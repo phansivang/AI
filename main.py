@@ -10,10 +10,17 @@ class AI_Chat:
         def home():
             return render_template(str('index.html'))
 
-        @self.app.route("/get")
+        @self.app.route("/get/respond",)
         def get_bot_response():
             message = request.args.get('msg')
             return Chat_AI().translation(message)
+        @self.app.route('/v1/message',methods=['GET'])
+        def get():
+            request_data = request.get_json()
+            message = request_data['message']
+            return  Chat_AI().translation(message)
+
+
 
 if __name__ == "__main__":
-    AI_Chat().app.run()
+    AI_Chat().app.run(debug=True)

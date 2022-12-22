@@ -1,1 +1,0 @@
-ai_param = [model="text-davinci-003" ,prompt=x,temperature=0.9,max_tokens=150,top_p=1,frequency_penalty=0,presence_penalty=0.6,stop=[" Human:", " AI:"]

@@ -17,11 +17,13 @@ class Chat_AI:
                                             top_p=1,
                                             frequency_penalty=0, presence_penalty=0.6, stop=['Human:', 'AI:'])
         respond = res['choices'][0]['text']
+        print(respond)
         if key == 'km':
             return self.khmer_translation(respond)
         return respond
 
     def khmer_translation(self, message):
+        print(message)
         return self.translator.translate(message, dest='km')
 
     def translation(self,message):
@@ -34,3 +36,11 @@ class Chat_AI:
     def detection_lang(self, message):
         return  self.translator.detect(message)
 
+    def greeting_validation(self, message):
+        key_words = ['hello ', 'hi ', 'What up ', "What's up ", 'Hey ', 'ជំរាបសួរ ', 'សួស្ដី ',]
+        for key_word in key_words:
+            if message in key_word:
+                if self.detection_lang(message) == 'km':
+                    return message.__add__('លោក')
+                return message.__add__('Bot')
+        pass
