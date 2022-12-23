@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 from ai_service import Chat_AI
-import openai
 
 class AI_Chat:
     def __init__(self):

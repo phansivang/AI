@@ -1,12 +1,5 @@
-import random
+x = 'My name is phansivang'
 
 
-
-class student:
-    def __int__(self):
-        self.number = 'dd'
-
-
-
-std = student()
-print(std.number)
+if 'My name' in x:
+    print(True)
