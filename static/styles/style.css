@@ -157,7 +157,7 @@ body {
   white-space: pre-wrap;
   word-wrap: break-word;
   text-align: justify;
-  font-family: Siemreap,Courier;
+  font-family: Siemreap, "Verdana", sans-serif;
   color: #ffffff;
   overflow: hidden;
 }
