@@ -3,6 +3,7 @@ from googletrans import Translator
 
 openai.api_key = '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'
 
+
 # message_code = ['code', 'python', 'javascript', 'c++', 'node js', 'php', 'c#', 'name']
 
 
@@ -18,13 +19,12 @@ class Chat_AI:
         respond = res['choices'][0]['text']
         if key == 'km':
             return self.khmer_translation(respond)
-        if self.ai_info(respond):
-            return self.ai_info(respond)
+        if self.check_ai_name(respond, key): return self.check_ai_name(respond, key)
         return respond
 
     def khmer_translation(self, message):
         if 'My name' in message:
-            return self.ai_info(message)
+            return 'នាងខ្ញុំឈ្មោះ ពាវ មុនីវីរៈពេជ្រ'
         return self.translator.translate(message, dest='km').text
 
     def translation(self, message):
@@ -37,13 +37,12 @@ class Chat_AI:
     def detection_lang(self, message):
         return self.translator.detect(message).lang
 
-    def ai_info(self, res):
+    def check_ai_name(self, res, key):
         info = 'My name is Peav monivireak pech, AKA Richie, and I am a full-stack developer currently studying ' \
                'computer science at CADT and fintech at TGI. '
-        if self.detection_lang(res) == 'en':
-            if 'My name' in res:
+        if 'My name' in res:
+            if key == 'en':
                 return info
-        pass
 
     def greeting_validation(self, message):
         key_words = ['hello ', 'hi ', 'What up ', "What's up ", 'Hey ']
