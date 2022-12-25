@@ -1,10 +1,11 @@
 import openai
+import os
 from googletrans import Translator
 
-openai.api_key = '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'
+openai.api_key = os.environ.get("OPENAI_API")
 
 
-# message_code = ['code', 'python', 'javascript', 'c++', 'node js', 'php', 'c#', 'name']
+# message_code = ['code', 'pytho', 'javascript', 'c++', 'node js', 'php', 'c#', 'nname']
 
 
 class Chat_AI:
