@@ -49,7 +49,12 @@ class Chat_AI:
     def greeting_validation(self, message):
         key_words = ['hello ', 'hi', 'what up ', "what's up ", 'hey','សួស្ដី','សួស្ដីបង','ហាយ','ហេឡូ','បង']
         for key_word in key_words:
-            if message in key_word:
+            if str(message).lower() in key_word:
                 return 'Hello madam?'
             pass
         return message
+
+
+x = ['Apple', "apple"]
+y = 'apple'
+print(y.upper())
