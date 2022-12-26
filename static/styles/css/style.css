@@ -162,25 +162,25 @@ body {
 
 @font-face{
 font-family: Taprom;
-src: url('kh.ttf');
+src: url('../fonts/kh.ttf');
 font-weight: normal;}
 
 @font-face{
 font-family: Khfont;
-src: url('khfont.ttf');
+src: url('../fonts/khfont.ttf');
 font-weight: bold;}
 
 @font-face{
 font-family: Louis;
-src: url('Louis.ttf');
+src: url('../fonts/Louis.ttf');
 font-weight: bold;}
 
 @font-face{
 font-family: Siemreap;
-src: url('Siemreap.ttf');
+src: url('../fonts/Siemreap.ttf');
 font-weight: normal;}
 
 @font-face{
 font-family: Elsie;
-src: url('Elsie.ttf');
+src: url('../fonts/Elsie.ttf');
 font-weight: normal;}
