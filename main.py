@@ -3,7 +3,8 @@ import os
 from googletrans import Translator
 import json
 
-openai.api_key = os.environ.get("OPENAI_API")
+# openai.api_key = os.environ.get("OPENAI_API")
+openai.api_key = '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'
 
 
 # message_code = ['code', 'pytho', 'javascript', 'c++', 'node js', 'php', 'c#', 'nname']
@@ -15,6 +16,7 @@ class Chat_AI:
         self.json = json.load(open('data.json', encoding="utf8"))
 
     def respond(self, message, key):
+        print(message)
         res = self.openai.Completion.create(model="text-davinci-003", prompt=message, temperature=0.9, max_tokens=300,
                                             top_p=1,
                                             frequency_penalty=0, presence_penalty=0.6, stop=['Human:', 'AI:'])
@@ -49,8 +51,9 @@ class Chat_AI:
                 return info['data']['nameEn']
 
     def greeting_validation(self, message):
-        key_words = ['hello ', 'hi', 'What up ', "What's up ", 'Hey ','សួស្ដី','សួស្ដីបង']
+        key_words = ['hello ', 'hi', 'what up ', "what's up ", 'hey','សួស្ដី','សួស្ដីបង','ហាយ','ហេឡូ','បង']
         for key_word in key_words:
             if message in key_word:
                 return 'Hello madam?'
-            return message
+            pass
+        return message
