@@ -3,8 +3,7 @@ import os
 from googletrans import Translator
 import json
 
-# openai.api_key = os.environ.get("OPENAI_API")
-openai.api_key = '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'
+openai.api_key = os.environ.get("OPENAI_API")
 
 
 # message_code = ['code', 'pytho', 'javascript', 'c++', 'node js', 'php', 'c#', 'nname']
@@ -16,7 +15,6 @@ class Chat_AI:
         self.json = json.load(open('data.json', encoding="utf8"))
 
     def respond(self, message, key):
-        print(message)
         res = self.openai.Completion.create(model="text-davinci-003", prompt=message, temperature=0.9, max_tokens=300,
                                             top_p=1,
                                             frequency_penalty=0, presence_penalty=0.6, stop=['Human:', 'AI:'])
@@ -33,7 +31,6 @@ class Chat_AI:
 
     def translation(self, message):
         greeting = self.greeting_validation(message)
-        print(greeting)
         detect_lange = self.detection_lang(greeting)
         if detect_lange == 'km':
             translate = self.translator.translate(greeting, dest='en').text
@@ -45,7 +42,6 @@ class Chat_AI:
 
     def check_ai_name(self, res, key):
         info = self.json
-        print(info)
         if 'My name' in res:
             if key == 'en':
                 return info['data']['nameEn']
