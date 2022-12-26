@@ -53,8 +53,3 @@ class Chat_AI:
                 return 'Hello madam?'
             pass
         return message
-
-
-x = ['Apple', "apple"]
-y = 'apple'
-print(y.upper())
