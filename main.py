@@ -53,6 +53,6 @@ class Chat_AI:
                 if self.detection_lang(message) == 'en':
                     return 'Hello madam?'
                 else:
-                    return 'សួស្ដីអ្នកនាង'
+                    return 'សួស្ដីបង?'
             pass
         return message
