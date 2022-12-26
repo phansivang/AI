@@ -50,6 +50,9 @@ class Chat_AI:
         key_words = ['hello ', 'hi', 'what up ', "what's up ", 'hey','សួស្ដី','សួស្ដីបង','ហាយ','ហេឡូ','បង']
         for key_word in key_words:
             if str(message).lower() in key_word:
-                return 'Hello madam?'
+                if self.detection_lang(message) == 'en':
+                    return 'Hello madam?'
+                else:
+                    return 'សួស្ដីអ្នកនាង'
             pass
         return message
