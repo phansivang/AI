@@ -17,7 +17,7 @@ class Chat_AI:
     def respond(self, message, key):
         res = self.openai.Completion.create(model="text-davinci-003", prompt=message, temperature=0.9, max_tokens=300,
                                             top_p=1,
-                                            frequency_penalty=0, presence_penalty=0.6, stop=['Human:', 'AI:'])
+                                            frequency_penalty=0, presence_penalty=0.6)
         respond = res['choices'][0]['text']
         if key == 'km':
             return self.khmer_translation(respond)
