@@ -39,7 +39,7 @@
 
            const msgText = msgerInput.value;
            if (!msgText) return;
-           appendMessage('Human', 'PERSON_IMG', "right", msgText);
+           appendMessage('Human 👨🏼‍🌾', 'PERSON_IMG', "right", msgText);
            msgerInput.value = "";
            botResponse(msgText);
          });
@@ -66,7 +66,7 @@
          function botResponse(rawText) {
            // Bot Response
            $.get("/get/respond", { msg: rawText }).done(function (data) {
-             appendMessage('Richie', 'BOT_IMG', "left", data);
+             appendMessage('Richie 👩🏻‍💼', 'BOT_IMG', "left", data);
            });
          }
 
