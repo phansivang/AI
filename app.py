@@ -5,6 +5,7 @@ from flask_sslify import SSLify
 app = Flask(__name__, template_folder='templates')
 sslify = SSLify(app)
 
+
 @app.route('/')
 def home():
     return render_template(str('index.html'))

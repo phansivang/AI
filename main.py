@@ -1,7 +1,10 @@
+import random
+
 import openai
 import os
 from googletrans import Translator
 import json
+import feature
 
 openai.api_key = os.environ.get("OPENAI_API")
 
@@ -13,6 +16,7 @@ class Chat_AI:
         self.openai = openai
         self.translator = Translator()
         self.json = json.load(open('data.json', encoding="utf8"))
+        self.ytube = feature
 
     def respond(self, message, key):
         res = self.openai.Completion.create(model="text-davinci-003", prompt=message, temperature=0.9, max_tokens=300,
@@ -30,6 +34,10 @@ class Chat_AI:
         return self.translator.translate(message, dest='km').text
 
     def translation(self, message):
+        # download youtube video
+        if self.dm_youtube_video(message): return random.choice(['Download Done!', 'Your video is done!', 'Here is your video!'])
+
+        # check is the user is greeting , return the user chat to valid formate
         greeting = self.greeting_validation(message)
         detect_lange = self.detection_lang(greeting)
         if detect_lange == 'km':
@@ -47,7 +55,7 @@ class Chat_AI:
                 return info['data']['nameEn']
 
     def greeting_validation(self, message):
-        key_words = ['hello ', 'hi', 'what up ', "what's up ", 'hey','សួស្ដី','សួស្ដីបង','ហាយ','ហេឡូ','បង']
+        key_words = ['hello ', 'hi', 'what up ', "what's up ", 'hey', 'សួស្ដី', 'សួស្ដីបង', 'ហាយ', 'ហេឡូ', 'បង']
         for key_word in key_words:
             if str(message).lower() in key_word:
                 if self.detection_lang(message) == 'en':
@@ -56,3 +64,8 @@ class Chat_AI:
                     return 'សួស្ដីបង?'
             pass
         return message
+
+    def dm_youtube_video(self, message):
+        if 'https://www.youtube.com/' in message:
+            return self.ytube.download_youtube_video(message)
+        pass
