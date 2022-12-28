@@ -33,9 +33,11 @@ class Chat_AI:
             return self.json['data']['nameKh']
         return self.translator.translate(message, dest='km').text
 
-    def translation(self, message):
+    def translation(self, message= 'Reponse Oops!'):
         # download youtube video
-        if self.dm_youtube_video(message): return random.choice(['Download Done!', 'Your video is done!', 'Here is your video!'])
+        if self.dm_youtube_video(message): return random.choice(['Download Done!', 'Your video is done!', 'Here is '
+                                                                                                          'your '
+                                                                                                          'video!'])
 
         # check is the user is greeting , return the user chat to valid formate
         greeting = self.greeting_validation(message)
@@ -66,6 +68,6 @@ class Chat_AI:
         return message
 
     def dm_youtube_video(self, message):
-        if 'https://www.youtube.com/' in message:
+        if 'https://www.youtube.com/' in message or 'https://youtu.be/' in message:
             return self.ytube.download_youtube_video(message)
         pass
