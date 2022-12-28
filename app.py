@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request
 from main import Chat_AI
+from flask_sslify import SSLify
 
 app = Flask(__name__, template_folder='templates')
-
+sslify = SSLify(app)
 
 @app.route('/')
 def home():
