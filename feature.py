@@ -7,7 +7,7 @@ def download_youtube_video(link):
     try:
 
         youtube = youtubeObject.streams.first()
-        youtube.download(os.path.expanduser("~/Downloads"))
+        youtube.download(output_path='/dev/null')
         # youtubeObject.streams.get_by_resolution('720p').download(output_path='/dev/null')
     except:
         return 'An error has occurred'
