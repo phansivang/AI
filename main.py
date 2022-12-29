@@ -35,9 +35,7 @@ class Chat_AI:
 
     def translation(self, message= 'Reponse Oops!'):
         # download youtube video
-        if self.dm_youtube_video(message): return random.choice(['Download Done!', 'Your video is done!', 'Here is '
-                                                                                                          'your '
-                                                                                                          'video!'])
+        if self.dm_youtube_video(message): return self.dm_youtube_video(message)
 
         # check is the user is greeting , return the user chat to valid formate
         greeting = self.greeting_validation(message)
