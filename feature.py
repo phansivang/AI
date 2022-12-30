@@ -6,7 +6,7 @@ def download_youtube_video(link):
 
     try:
 
-        youtube = youtubeObject.streams.first()
+        youtube = youtubeObject.streams.filter(file_extension='mp4').first()
         youtube.download(os.path.join(os.getcwd(), "Downloads"))
         # youtubeObject.streams.get_by_resolution('720p').download(output_path='/dev/null')
     except:
