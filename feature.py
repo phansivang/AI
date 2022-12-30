@@ -1,14 +1,13 @@
 from pytube import YouTube
 import os
 
-
 def download_youtube_video(link):
     youtubeObject = YouTube(link)
 
     try:
 
         youtube = youtubeObject.streams.first()
-        youtube.download(os.environ['\Downloads'])
+        youtube.download(os.path.join(os.getcwd(), "Downloads"))
         # youtubeObject.streams.get_by_resolution('720p').download(output_path='/dev/null')
     except:
         return 'An error has occurred'
