@@ -1,71 +1,50 @@
-import random
-
 import openai
 import os
 from googletrans import Translator
 import json
-import feature
 
 openai.api_key = os.environ.get("OPENAI_API")
 
 
-# message_code = ['code', 'pytho', 'javascript', 'c++', 'node js', 'php', 'c#', 'nname']
-
-class Chat_AI:
+class chat_ai:
     def __init__(self):
         self.openai = openai
         self.translator = Translator()
-        self.json = json.load(open('data.json', encoding="utf8"))
-        self.ytube = feature
 
     def respond(self, message, key):
-        res = self.openai.Completion.create(model="text-davinci-003", prompt=message, temperature=0.9, max_tokens=300,
+        print(message)
+        messages = open('data', 'r').read() + '\n' + message
+        print(messages)
+        res = self.openai.Completion.create(model="text-davinci-003", prompt=messages, temperature=0.9, max_tokens=300,
                                             top_p=1,
                                             frequency_penalty=0, presence_penalty=0.6)
         respond = res['choices'][0]['text']
         if key == 'km':
             return self.khmer_translation(respond)
-        if self.check_ai_name(respond, key): return self.check_ai_name(respond, key)
+        print(respond)
         return respond
 
     def khmer_translation(self, message):
         if 'My name' in message:
-            return self.json['data']['nameKh']
+            return 'ខ្ញុំឈ្មោះ ពាវ មុន្នីវីរៈពេជ្រ'
         return self.translator.translate(message, dest='km').text
 
-    def translation(self, message= 'Reponse Oops!'):
-        # download youtube video
-        if self.dm_youtube_video(message): return self.dm_youtube_video(message)
-
-        # check is the user is greeting , return the user chat to valid formate
-        greeting = self.greeting_validation(message)
-        detect_lange = self.detection_lang(greeting)
+    def translation(self, message):
+        detect_lange = self.detection_lang(message)
         if detect_lange == 'km':
-            translate = self.translator.translate(greeting, dest='en').text
+            translate = self.translator.translate(message, dest='en').text
+            print(translate)
             return self.respond(translate, detect_lange)
-        return self.respond(greeting, detect_lange)
+        return self.respond(message, detect_lange)
 
     def detection_lang(self, message):
         return self.translator.detect(message).lang
 
-    def check_ai_name(self, res, key):
-        info = self.json
-        if 'My name' in res:
-            if key == 'en':
-                return info['data']['nameEn']
-
-    def greeting_validation(self, message):
-        key_words = ['hello ', 'hi', 'what up ', "what's up ", 'hey', 'សួស្ដី', 'សួស្ដីបង', 'ហាយ', 'ហេឡូ', 'បង']
-        for key_word in key_words:
-            if str(message).lower() in key_word:
-                if self.detection_lang(message) == 'en':
-                    return 'Hello madam?'
-                else:
-                    return 'សួស្ដីបង?'
-            pass
-        return message
-
-    def dm_youtube_video(self, message):
-        if 'https://www.youtube.com/' in message or 'https://youtu.be/' in message:
-            return self.ytube.download_youtube_video(message)
-        pass
+    def generate_image(self, message):
+        response = self.openai.Image.create(
+            prompt=message,
+            n=1,
+            size="1024x1024"
+        )
+        image_url = response['data'][0]['url']
+        return f'<img src="{image_url}" alt="Girl in a jacket" width="200" height="350">'
