@@ -12,16 +12,13 @@ class chat_ai:
         self.translator = Translator()
 
     def respond(self, message, key):
-        print(message)
         messages = open('data', 'r').read() + '\n' + message
-        print(messages)
         res = self.openai.Completion.create(model="text-davinci-003", prompt=messages, temperature=0.9, max_tokens=300,
                                             top_p=1,
-                                            frequency_penalty=0, presence_penalty=0.6)
+                                            frequency_penalty=0, presence_penalty=0.6, stop=[':', 'reply:'])
         respond = res['choices'][0]['text']
         if key == 'km':
             return self.khmer_translation(respond)
-        print(respond)
         return respond
 
     def khmer_translation(self, message):
