@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__, template_folder='templates')
 sslify = SSLify(app)
-ips =  [os.environ.get("OPENAI_API")]
+ips =  [os.environ.get("IPSLIST")]
 
 @app.route('/')
 def home():
