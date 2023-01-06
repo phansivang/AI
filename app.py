@@ -2,20 +2,25 @@ from flask import Flask, render_template, request, Response
 from main import chat_ai
 from flask_sslify import SSLify
 import os
+import socket
 
 app = Flask(__name__, template_folder='templates')
 sslify = SSLify(app)
-ips =  [os.environ.get("IPSLIST")]
+ips = [os.environ.get("IPSLIST")]
+ip = socket.gethostname()
+d = socket.gethostbyaddr(ip)
+print(d)
 
 @app.route('/')
 def home():
     return render_template(str('index.html'))
 
+
 @app.before_request
 def block_ip():
+    if d in ips:
+        return Response("Not allowed IP", status=403)
 
-  if request.remote_addr in ips:
-    return Response("Not allowed IP", status=403)
 
 @app.route("/get/respond", )
 def get_bot_response():
