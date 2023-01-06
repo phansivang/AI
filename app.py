@@ -18,7 +18,7 @@ def home():
 
 @app.before_request
 def block_ip():
-    if d in ips:
+    if ips in d:
         return Response("Not allowed IP", status=403)
 
 
