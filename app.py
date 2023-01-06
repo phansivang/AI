@@ -20,6 +20,7 @@ def block_ip():
 @app.route("/get/respond", )
 def get_bot_response():
     message = request.args.get('msg')
+    print('IP address' + request.remote_addr)
     return chat_ai().translation(message)
 
 
