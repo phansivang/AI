@@ -12,9 +12,7 @@ class chat_ai:
         self.translator = Translator()
 
     def respond(self, message, key):
-        messages =  open('data', 'r').read() + '\n' + message + '?'
-        print(messages)
-        res = self.openai.Completion.create(model="text-davinci-003", prompt=messages, temperature=0.9, max_tokens=300,
+        res = self.openai.Completion.create(model="text-davinci-003", prompt=message, temperature=0.9, max_tokens=300,
                                             top_p=1,
                                             frequency_penalty=0, presence_penalty=0.6)
         respond = res['choices'][0]['text']
@@ -31,7 +29,6 @@ class chat_ai:
         detect_lange = self.detection_lang(message)
         if detect_lange == 'km':
             translate = self.translator.translate(message, dest='en').text
-            print(translate)
             return self.respond(translate, detect_lange)
         return self.respond(message, detect_lange)
 
