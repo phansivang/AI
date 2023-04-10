@@ -176,6 +176,10 @@ class Richie:
         self.logger.debug('Initializing browser...')
         options = uc.ChromeOptions()
         options.add_argument('--headless')
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--remote-debugging-port=9222")
         options.add_argument('--window-size=1024,768')
         if self.__proxy:
             options.add_argument(f'--proxy-server={self.__proxy}')
