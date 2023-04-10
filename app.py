@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, Response
-from main import chat_ai
+from main import RichieService
 from flask_sslify import SSLify
 import os
 import socket
@@ -26,14 +26,14 @@ def block_ip():
 def get_bot_response():
     message = request.args.get('msg')
     print('IP address' + request.remote_addr)
-    return chat_ai().translation(message)
+    return RichieService().translation(message)
 
 
 @app.route('/v1/message', methods=['GET'])
 def get():
     request_data = request.get_json()
     message = request_data['message']
-    return chat_ai().translation(message)
+    return RichieService().translation(message)
 
 
 if __name__ == "__main__":
